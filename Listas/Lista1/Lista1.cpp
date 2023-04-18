@@ -28,10 +28,10 @@ int main(void){
 	}
 	
 	cout << "Valores para a lista 2:" << endl;
-	for (i = 0; i < max; i++){
+	for (i = 0; i < max2; i++){
 		cout << i << "P: ";
 		cin >> x;
-		inserirSemRepetir(v2, x, qnt2, max);
+		inserirSemRepetir(v2, x, qnt2, max2);
 	}
 
 	//Listando
@@ -39,6 +39,20 @@ int main(void){
 	listar(v1, qnt);
 	cout << endl << "Lista 2:" << endl;
 	listar(v2, qnt2);
+
+	//Intercalando
+	int max3 = max + max2;
+	int v3[max3];
+	//RESOLVER AQUI AUIAUIAUIASIFUASDIFJASDKILOFJSDKLAFJLKSDAJFSKLDAJFLKASDFSA
+	int k = 0;
+	for (i = 0; i < max3; i++){
+		v3[i] = v1[k];
+		v3[i+1] = v2[k];
+		k++;
+	}
+
+	cout << endl << "Lista 3:" << endl;
+	listar(v3, max3);
 }
 
 void inserirSemRepetir(int v[], int x, int &pos, int max){
