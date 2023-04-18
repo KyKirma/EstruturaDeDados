@@ -2,11 +2,12 @@
 using namespace std;
 
 void inserirSemRepetir(int v[], int x, int &pos, int max);
+void listar(int v[], int qnt);
 
 int main(void){
 	//Declarando as variaveis
 	int x, max, max2, i;
-	int qnt = 0;
+	int qnt = 0, qnt2 = 0;
 
 	cout << "Digite o tamanho maximo da primeira lista: ";
 	cin >> max;
@@ -16,15 +17,28 @@ int main(void){
 	
 	//Declarando os vetores
 	int v1[max];
-	
+	int v2[max2];
+
 	//Inserindo os valores
+	cout << "Valores para a lista 1:" << endl;
 	for (i = 0; i < max; i++){
 		cout << i << "P: ";
 		cin >> x;
 		inserirSemRepetir(v1, x, qnt, max);
 	}
-
 	
+	cout << "Valores para a lista 2:" << endl;
+	for (i = 0; i < max; i++){
+		cout << i << "P: ";
+		cin >> x;
+		inserirSemRepetir(v2, x, qnt2, max);
+	}
+
+	//Listando
+	cout << "Lista 1:" << endl;
+	listar(v1, qnt);
+	cout << endl << "Lista 2:" << endl;
+	listar(v2, qnt2);
 }
 
 void inserirSemRepetir(int v[], int x, int &pos, int max){
@@ -43,4 +57,11 @@ void inserirSemRepetir(int v[], int x, int &pos, int max){
 		v[pos] = x;
 		pos++;
 	}
+}
+
+void listar (int v[], int qnt) {
+    int i;
+    for (i = 0; i < qnt; i++) {
+        cout << v[i] << " ";
+    }
 }
