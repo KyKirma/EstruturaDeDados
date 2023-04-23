@@ -43,7 +43,6 @@ int main(void){
 	//Intercalando
 	int max3 = max + max2;
 	int v3[max3];
-	//RESOLVER AQUI AUIAUIAUIASIFUASDIFJASDKILOFJSDKLAFJLKSDAJFSKLDAJFLKASDFSA
 	int k = 0;
 	for (i = 0; i < max3; i++){
 		v3[i] = v1[k];
