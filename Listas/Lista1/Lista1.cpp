@@ -7,6 +7,8 @@ void listar(int v[], int qnt);
 int main(void){
 	//Declarando as variaveis
 	int x, max, max2, i;
+
+	//A quantidade de fatores existentes na lista
 	int qnt = 0, qnt2 = 0;
 
 	cout << "Digite o tamanho maximo da primeira lista: ";
@@ -35,7 +37,7 @@ int main(void){
 	}
 
 	//Listando
-	cout << "Lista 1:" << endl;
+	cout << "\nLista 1:" << endl;
 	listar(v1, qnt);
 	cout << endl << "Lista 2:" << endl;
 	listar(v2, qnt2);
@@ -60,11 +62,11 @@ void inserirSemRepetir(int v[], int x, int &pos, int max){
 		cout<< "Erro: Lista cheia!" << endl;
 	} 
 	else{
-		for (i = 0; i < pos; i++){
+		for (i = 0; i <= pos; i++){
 			if(v[i] == x){
 				cout << "Erro: Elemento repetido na posicao: " << i << endl << "Tente novamente: ";
 				cin >> x;
-				i = 0;
+				i = -1;
 			}
 		}
 		v[pos] = x;
