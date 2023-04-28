@@ -43,6 +43,7 @@ int main(void){
 	listar(v2, qnt2);
 
 	//Intercalando
+	if (max == max2){
 	int max3 = max + max2;
 	int v3[max3];
 	int k = 0;
@@ -63,7 +64,9 @@ int main(void){
 
 	cout << endl << "Lista 3:" << endl;
 	listar(v3, max3);
-
+	} else {
+		cout << "Não foi possivel intervalar";
+	}
 }
 void inserirSemRepetir(int v[], int x, int &pos, int max){
 	int i;
