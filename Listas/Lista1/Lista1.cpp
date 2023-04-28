@@ -3,6 +3,7 @@ using namespace std;
 
 void inserirSemRepetir(int v[], int x, int &pos, int max);
 void listar(int v[], int qnt);
+void intercalar(int vetor1[], int &tamanho1, int vetor2[], int &tamanho2, int vetor_resultante[], int &tamanho3);
 
 int main(void){
 	//Declarando as variaveis
@@ -43,30 +44,15 @@ int main(void){
 	listar(v2, qnt2);
 
 	//Intercalando
-	if (max == max2){
 	int max3 = max + max2;
 	int v3[max3];
-	int k = 0;
-	for (i = 0; i < max3;){
-		if (i % 2 == 0){
-			k = i / 2;
-		}
 
-		if (k < max){
-			v3[i] = v1[k];
-			i++;
-			}
-		if (k < max2){
-			v3[i] = v2[k];
-			i++;
-			} 
-		}
+	intercalar(v1, max, v2, max2, v3, max3);
 
 	cout << endl << "Lista 3:" << endl;
 	listar(v3, max3);
-	} else {
-		cout << "Não foi possivel intervalar";
-	}
+
+	
 }
 void inserirSemRepetir(int v[], int x, int &pos, int max){
 	int i;
@@ -91,4 +77,22 @@ void listar (int v[], int qnt) {
     for (i = 0; i < qnt; i++) {
         cout << v[i] << " ";
     }
+}
+
+void intercalar(int vetor1[], int &tamanho1, int vetor2[], int &tamanho2, int vetor_resultante[], int &tamanho3) {
+    int i = 0, j = 0, k = 0;
+    while (true) {
+        if (i < tamanho1) {
+            vetor_resultante[k] = vetor1[i];
+            i++;
+            k++;
+        }
+        if (j < tamanho2) {
+            vetor_resultante[k] = vetor2[j];
+            j++;
+            k++;
+        }
+        if(i >= tamanho1 && j >= tamanho2) break;
+    }
+    tamanho3 = k;
 }
