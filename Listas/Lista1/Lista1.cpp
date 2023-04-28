@@ -1,33 +1,35 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 void inserirSemRepetir(int v[], int x, int &pos, int max);
 void listar(int v[], int qnt);
 void intercalar(int vetor1[], int &tamanho1, int vetor2[], int &tamanho2, int vetor_resultante[], int &tamanho3);
+void intersecao(int v1[], int max1, int v2[], int max2, int vFinal[], int &maxFinal);
 
 int main(void){
 	//Declarando as variaveis
-	int x, max, max2, i;
+	int x, max1, max2, i;
 
 	//A quantidade de fatores existentes na lista
 	int qnt = 0, qnt2 = 0;
 
 	cout << "Digite o tamanho maximo da primeira lista: ";
-	cin >> max;
+	cin >> max1;
 	
 	cout << "Digite o tamanho maximo da segunda lista: ";
 	cin >> max2;
 	
 	//Declarando os vetores
-	int v1[max];
+	int v1[max1];
 	int v2[max2];
 
 	//Inserindo os valores
 	cout << "Valores para a lista 1:" << endl;
-	for (i = 0; i < max; i++){
+	for (i = 0; i < max1; i++){
 		cout << i << "P: ";
 		cin >> x;
-		inserirSemRepetir(v1, x, qnt, max);
+		inserirSemRepetir(v1, x, qnt, max1);
 	}
 	
 	cout << "Valores para a lista 2:" << endl;
@@ -38,21 +40,27 @@ int main(void){
 	}
 
 	//Listando
-	cout << "\nLista 1:" << endl;
+	cout << "\nLista 1: ";
 	listar(v1, qnt);
-	cout << endl << "Lista 2:" << endl;
+	cout << endl << "Lista 2: ";
 	listar(v2, qnt2);
 
+	//Novos parametros para as novas listas
+	int maxC = max1 + max2;
+	int maxD = max1 + max2;
 	//Intercalando
-	int max3 = max + max2;
-	int v3[max3];
+	int vC[maxC];
 
-	intercalar(v1, max, v2, max2, v3, max3);
+	intercalar(v1, max1, v2, max2, vC, maxC);
+	cout << endl << "Lista 3|Intercalando: ";
+	listar(vC, maxC);
 
-	cout << endl << "Lista 3:" << endl;
-	listar(v3, max3);
+	//Inserseção
+	int vD[maxD];
 
-	
+	cout << endl << "Lista 4|Intersecao: ";
+	intersecao(v1, max1, v2, max2, vD, maxD);
+	listar(vD, maxD);
 }
 void inserirSemRepetir(int v[], int x, int &pos, int max){
 	int i;
@@ -95,4 +103,22 @@ void intercalar(int vetor1[], int &tamanho1, int vetor2[], int &tamanho2, int ve
         if(i >= tamanho1 && j >= tamanho2) break;
     }
     tamanho3 = k;
+}
+
+void intersecao(int v1[], int max1, int v2[], int max2, int vFinal[], int &maxFinal){
+	int i = 0, k = 0;
+	while (true) {
+        if (i < max1) {
+			for(int ix = 0; ix < max2; ix++){
+				if(v1[i] == v2[ix]){
+					vFinal[k] = v1[i];
+					k++;
+				}
+			}
+            i++;
+        }
+        if(i >= max1) break;
+    }
+	maxFinal = k;
+	if(k == 0){ cout << "ERRO! Não há elementos para a intersecao."; }
 }
