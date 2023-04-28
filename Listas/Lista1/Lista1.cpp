@@ -46,16 +46,25 @@ int main(void){
 	int max3 = max + max2;
 	int v3[max3];
 	int k = 0;
-	for (i = 0; i < max3; i++){
-		v3[i] = v1[k];
-		v3[i+1] = v2[k];
-		k++;
-	}
+	for (i = 0; i < max3;){
+		if (i % 2 == 0){
+			k = i / 2;
+		}
+
+		if (k < max){
+			v3[i] = v1[k];
+			i++;
+			}
+		if (k < max2){
+			v3[i] = v2[k];
+			i++;
+			} 
+		}
 
 	cout << endl << "Lista 3:" << endl;
 	listar(v3, max3);
-}
 
+}
 void inserirSemRepetir(int v[], int x, int &pos, int max){
 	int i;
 	if (pos >= max){
