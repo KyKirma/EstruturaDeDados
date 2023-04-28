@@ -7,6 +7,7 @@ void listar(int v[], int qnt);
 void intercalar(int vetor1[], int &tamanho1, int vetor2[], int &tamanho2, int vetor_resultante[], int &tamanho3);
 void intersecao(int v1[], int max1, int v2[], int max2, int vFinal[], int &maxFinal);
 void uniao(int v1[], int max1, int v2[], int max2, int vFinal[], int &maxFinal);
+void removerPeloIndice(int v[], int &maxV, int id);
 
 int main(void){
 	//Declarando as variaveis
@@ -51,6 +52,7 @@ int main(void){
 	int maxC = max1 + max2;
 	int maxD = max1 + max2;
 	int maxF = max1 + max2;
+	
 	//Intercalando
 	int vC[maxC];
 
@@ -70,14 +72,32 @@ int main(void){
 	uniao(v1, max1, v2, max2, vF, maxF);
 	cout << endl << "Lista 5|Uniao: ";
 	listar(vF, maxF);
+
+	//Remoção pelo Indice
+	int maxG = maxF;
+	int id;
+	int vG[maxG];
+
+	for(i = 0; i < maxF; i++){
+		vG[i] = vF[i];
+	}
+
+	cout << endl << "Digite um indice para ser excluido da lista 5: ";
+	cin >> id;
+	if(id >= maxG || id < 0){
+		cout << endl << "ERRO! Indice não existe na Lista 5";	
+	} else {
+		removerPeloIndice(vG, maxG, id);
+		cout << endl << "Lista 6|Remocao: ";
+		listar(vG, maxG);
+	}
+	
 }
-
-
 void inserirSemRepetir(int v[], int x, int &pos, int max){
 	int i;
 	if (pos >= max){
 		cout<< "Erro: Lista cheia!" << endl;
-	} 
+	}
 	else{
 		for (i = 0; i <= pos; i++){
 			if(v[i] == x){
@@ -155,4 +175,11 @@ void uniao(int v1[], int max1, int v2[], int max2, int vFinal[], int &maxFinal){
 		}
 	}
 	maxFinal = k;
+}
+
+void removerPeloIndice(int v[], int &maxV, int id){
+	for (int i = id; i < maxV - 1; i++) {
+        v[i] = v[i + 1];
+    }
+	maxV--;
 }
