@@ -89,3 +89,4 @@ void listar (int v[], int qnt) {
         cout << v[i] << " ";
     }
 }
+//pau no seu cu
