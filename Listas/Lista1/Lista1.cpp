@@ -6,6 +6,7 @@ void inserirSemRepetir(int v[], int x, int &pos, int max);
 void listar(int v[], int qnt);
 void intercalar(int vetor1[], int &tamanho1, int vetor2[], int &tamanho2, int vetor_resultante[], int &tamanho3);
 void intersecao(int v1[], int max1, int v2[], int max2, int vFinal[], int &maxFinal);
+void uniao(int v1[], int max1, int v2[], int max2, int vFinal[], int &maxFinal);
 
 int main(void){
 	//Declarando as variaveis
@@ -46,8 +47,10 @@ int main(void){
 	listar(v2, qnt2);
 
 	//Novos parametros para as novas listas
+	// não foi reutilizado os parametros pois as funções retornam um novo valor pra max"x"
 	int maxC = max1 + max2;
 	int maxD = max1 + max2;
+	int maxF = max1 + max2;
 	//Intercalando
 	int vC[maxC];
 
@@ -61,7 +64,15 @@ int main(void){
 	cout << endl << "Lista 4|Intersecao: ";
 	intersecao(v1, max1, v2, max2, vD, maxD);
 	listar(vD, maxD);
+
+	//União
+	int vF[maxF];
+	uniao(v1, max1, v2, max2, vF, maxF);
+	cout << endl << "Lista 5|Uniao: ";
+	listar(vF, maxF);
 }
+
+
 void inserirSemRepetir(int v[], int x, int &pos, int max){
 	int i;
 	if (pos >= max){
@@ -121,4 +132,27 @@ void intersecao(int v1[], int max1, int v2[], int max2, int vFinal[], int &maxFi
     }
 	maxFinal = k;
 	if(k == 0){ cout << "ERRO! Não há elementos para a intersecao."; }
+}
+
+void uniao(int v1[], int max1, int v2[], int max2, int vFinal[], int &maxFinal){
+	int i, k = 0;
+	for(i = 0; i < max1; i++){
+		vFinal[k] = v1[i];
+		k++; 
+	}
+
+	for(i = 0; i < max2; i++){
+		bool pertence = false;
+		for(int j = 0; j < max2; j++){
+			if(v2[i] == v1[j]){
+				pertence = true;
+				break;
+			}
+		}
+		if(!pertence){
+			vFinal[k] = v2[i];
+			k++;
+		}
+	}
+	maxFinal = k;
 }
